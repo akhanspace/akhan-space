@@ -1,0 +1,374 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Contact"
+  active="contact"
+  pageTitle="Contact"
+  pageTitleHref="/contact"
+  lockY={true}
+  bodyClass="contact-page"
+>
+  <div class="contact-wrap">
+    {/* Muse #widgetu1987: 429×280 absolute field stack */}
+    <form id="contact-form" class="contact-form" novalidate>
+      <div class="fld fld--name">
+        <label class="fld-label" for="name">Name:</label>
+        <div class="fld-box">
+          <input
+            id="name"
+            type="text"
+            name="name"
+            required
+            autocomplete="name"
+            spellcheck="false"
+            placeholder=" "
+          />
+          <span class="fld-prompt">Enter Name</span>
+        </div>
+      </div>
+
+      <div class="fld fld--email">
+        <label class="fld-label" for="email">Email:</label>
+        <div class="fld-box">
+          <input
+            id="email"
+            type="email"
+            name="email"
+            required
+            autocomplete="email"
+            spellcheck="false"
+            placeholder=" "
+          />
+          <span class="fld-prompt">Enter Email</span>
+        </div>
+      </div>
+
+      <div class="fld fld--message">
+        <label class="fld-label" for="message">Message:</label>
+        <div class="fld-box fld-box--area">
+          <textarea
+            id="message"
+            name="message"
+            required
+            placeholder=" "
+            spellcheck="false"></textarea>
+          <span class="fld-prompt">Enter Message</span>
+        </div>
+      </div>
+
+      <button type="submit" class="submit">
+        <span class="submit-label">Submit</span>
+      </button>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+    </form>
+
+    {/* Muse #pu19530-4: same-line pink copy + cyan underlined mailto */}
+    <p class="email-block">
+      <span class="email-line">Or just shoot me an email at</span>
+      <a class="email-addr" href="mailto:asad@akhan.space">asad@akhan.space</a>
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  :global(body.contact-page) {
+    overflow-y: hidden;
+  }
+
+  /*
+    Muse #pwidgetu1987 sits at viewport top:200px.
+    .page-shell already pads 100px for the fixed header, so use 100px more.
+  */
+  .contact-wrap {
+    width: 429px;
+    max-width: 100%;
+    margin: 100px auto 0;
+  }
+
+  /* Muse absolute stack: name@0, email@63, message@125, submit@232 */
+  .contact-form {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    margin: 0;
+  }
+
+  .fld {
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
+
+  .fld--name {
+    top: 0;
+    height: 56px;
+  }
+
+  .fld--email {
+    top: 63px;
+    height: 56px;
+  }
+
+  .fld--message {
+    top: 125px;
+    height: 89px;
+  }
+
+  /* Muse labels: Header, 13px / 10px tracking, left 2px */
+  .fld-label {
+    position: absolute;
+    top: 0;
+    left: 2px;
+    margin: 0;
+    color: var(--pink);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: var(--weight-display);
+    letter-spacing: calc(10px * var(--track-scale));
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  /* Muse #u2025-4 / #u2010-4 / #u2017-4 — top 18px within each fld-grp */
+  .fld-box {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    box-sizing: content-box;
+    width: min(413px, 100%);
+    height: 22px;
+    padding: 6px;
+    border: 2px solid var(--pink);
+    border-radius: 0 16px 0 16px;
+    background-color: #7f7f7f;
+    color: var(--pink);
+  }
+
+  .fld-box--area {
+    height: 55px;
+  }
+
+  .fld-box:hover,
+  .fld-box:focus-within {
+    border-color: var(--cyan);
+  }
+
+  .fld-box.is-error {
+    border-color: var(--error);
+    background-color: var(--cream);
+  }
+
+  .fld-box input,
+  .fld-box textarea {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--pink);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    outline: none;
+    resize: none;
+  }
+
+  .fld-box.is-error input,
+  .fld-box.is-error textarea {
+    color: #000;
+  }
+
+  .fld-prompt {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    color: var(--pink);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    pointer-events: none;
+  }
+
+  .fld-box input:focus + .fld-prompt,
+  .fld-box input:not(:placeholder-shown) + .fld-prompt,
+  .fld-box textarea:focus + .fld-prompt,
+  .fld-box textarea:not(:placeholder-shown) + .fld-prompt {
+    visibility: hidden;
+  }
+
+  /* Muse #u1988-4 submit pill — Industry needs the -11px label pull-up */
+  .submit {
+    position: absolute;
+    top: 232px;
+    left: -2px;
+    box-sizing: content-box;
+    width: 121px;
+    height: 22px;
+    margin: 0;
+    padding: 8px 0 0;
+    border: 2px solid var(--pink);
+    border-radius: 100px;
+    background-color: #000;
+    color: var(--pink);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: var(--weight-display);
+    letter-spacing: calc(10px * var(--track-scale));
+    line-height: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    transition:
+      border-color 0.5s linear,
+      background-color 0.5s linear,
+      color 0.5s linear;
+  }
+
+  .submit-label {
+    display: block;
+    height: 11px;
+    margin-top: -11px;
+    line-height: 16px;
+  }
+
+  .submit:hover {
+    border-color: var(--cyan);
+    background-color: #7f7f7f;
+    color: var(--cyan);
+  }
+
+  .form-status {
+    position: absolute;
+    top: 232px;
+    left: 140px;
+    min-height: 1.2em;
+    margin: 0;
+    color: var(--pink);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .form-status.is-error {
+    color: var(--error);
+    font-style: italic;
+  }
+
+  .form-status.is-ok {
+    color: var(--cream);
+    font-style: italic;
+  }
+
+  /* Muse #pu19530-4: inline after form (~11px) */
+  .email-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35em;
+    margin: 11px 0 0;
+    color: var(--pink);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+  .email-line {
+    color: var(--pink);
+  }
+
+  .email-addr {
+    color: var(--cyan);
+    text-decoration: underline;
+  }
+
+  .email-addr:hover {
+    color: var(--cream);
+  }
+
+  @media (max-width: 500px) {
+    .contact-wrap {
+      margin-top: 30px;
+    }
+
+    .contact-form {
+      height: auto;
+      min-height: 300px;
+    }
+
+    .fld-label {
+      letter-spacing: calc(6px * var(--track-scale));
+    }
+
+    .submit {
+      letter-spacing: calc(6px * var(--track-scale));
+    }
+
+    .fld-box {
+      width: 100%;
+      max-width: 269px;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const status = document.getElementById("form-status");
+  if (form && status) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.classList.remove("is-error", "is-ok");
+      form.querySelectorAll(".fld-box").forEach((el) => el.classList.remove("is-error"));
+
+      const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+      const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
+      const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
+
+      let valid = true;
+      if (!name) {
+        form.querySelector("#name")?.closest(".fld-box")?.classList.add("is-error");
+        valid = false;
+      }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        form.querySelector("#email")?.closest(".fld-box")?.classList.add("is-error");
+        valid = false;
+      }
+      if (!message) {
+        form.querySelector("#message")?.closest(".fld-box")?.classList.add("is-error");
+        valid = false;
+      }
+      if (!valid) {
+        status.classList.add("is-error");
+        status.textContent = "Required";
+        return;
+      }
+
+      status.textContent = "Submitting Form...";
+      try {
+        const res = await fetch("/.netlify/functions/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, message }),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          status.classList.add("is-error");
+          status.textContent = json.error || "The server encountered an error.";
+          return;
+        }
+        status.classList.add("is-ok");
+        status.textContent = "Form received.";
+        form.reset();
+      } catch {
+        status.classList.add("is-error");
+        status.textContent = "The server encountered an error.";
+      }
+    });
+  }
+</script>

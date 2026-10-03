@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Slideshow from "../components/Slideshow.astro";
+import Typewriter from "../components/Typewriter.astro";
+
+const slides = [
+  "/images/otter space 0.png",
+  "/images/otter space 1.png",
+  "/images/otter space 2.png",
+  "/images/otter space 3.png",
+];
+---
+
+<BaseLayout
+  title="Otter Space"
+  active="work"
+  pageTitle="Otter Space"
+  pageTitleHref="/otter-space"
+>
+  <article class="project">
+    <div class="section-head">
+      <Typewriter text="PROCESS" selectorId="Typing" />
+    </div>
+    <Slideshow images={slides} id="otter-slides" />
+    <div class="section-head">
+      <Typewriter text="FINAL RENDER" selectorId="Typing2" />
+    </div>
+    <img class="hero" src="/images/otter space 3.png" alt="Otter Space final render" />
+  </article>
+</BaseLayout>
+
+<style>
+  .project {
+    max-width: 963px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .hero {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .section-head {
+    text-align: center;
+  }
+
+  .section-head :global(.typewriter) {
+    font-size: 25px;
+    line-height: 31px;
+  }
+</style>
+
+<script>
+  import { initTypewriter } from "../scripts/typewriter.js";
+  import { initSlideshow } from "../scripts/slideshow.js";
+  initTypewriter("#Typing", ["PROCESS"], 150);
+  initTypewriter("#Typing2", ["FINAL RENDER"], 150);
+  initSlideshow("#otter-slides");
+</script>

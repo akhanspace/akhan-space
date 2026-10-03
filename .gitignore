@@ -1,0 +1,33 @@
+# dependencies & build
+site/node_modules/
+site/dist/
+site/.astro/
+**/node_modules/
+**/dist/
+
+# secrets
+.env
+.env.*
+!.env.example
+site/.env
+site/.env.production
+
+# local Windows junctions (real media lives in /assets and /images)
+site/public/assets/
+site/public/images/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Muse export leftovers (site/ is the live app)
+_extract/
+*.html
+!site/**/*.html
+css/
+scripts/
+muse_manifest.xml
+sitemap.xml
+favicon.html

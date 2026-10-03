@@ -1,0 +1,62 @@
+---
+interface Props {
+  active?: "work" | "profile" | "contact" | "";
+  pageTitle?: string;
+  pageTitleHref?: string;
+}
+const { active = "", pageTitle = "", pageTitleHref = "#" } = Astro.props;
+
+const letterNav = [
+  { href: "/work", key: "work", letters: ["w", "o", "r", "k"] },
+  { href: "/profile", key: "profile", letters: ["p", "r", "o", "f", "i", "l", "e"] },
+  { href: "/contact", key: "contact", letters: ["c", "o", "n", "t", "a", "c", "t"] },
+] as const;
+---
+
+<div class="site-chrome">
+  <div class="header-bar" aria-hidden="true"></div>
+  <div class="header-rule" aria-hidden="true"></div>
+
+  <a class="brand" href="/">ASad khan</a>
+
+  {
+    pageTitle && (
+      <p class="page-title">
+        <a href={pageTitleHref}>
+          {pageTitle.slice(0, -1)}
+          <span class="last-letter">{pageTitle.slice(-1)}</span>
+        </a>
+      </p>
+    )
+  }
+
+  <nav class="side-nav" aria-label="Primary">
+    {
+      letterNav.map((item) => (
+        <a href={item.href} class={active === item.key ? "is-active" : ""} aria-label={item.key}>
+          {item.letters.map((letter) => (
+            <span>{letter}</span>
+          ))}
+        </a>
+      ))
+    }
+  </nav>
+
+  <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+    <div class="hamburger" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="cross" aria-hidden="true">
+      <span></span>
+      <span></span>
+    </div>
+  </button>
+
+  <nav class="mobile-nav" aria-label="Mobile">
+    <a href="/work" class={active === "work" ? "is-active" : ""}>WORK</a>
+    <a href="/profile" class={active === "profile" ? "is-active" : ""}>PROFILE</a>
+    <a href="/contact" class={active === "contact" ? "is-active" : ""}>CONTACT</a>
+  </nav>
+</div>

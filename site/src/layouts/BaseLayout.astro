@@ -1,0 +1,68 @@
+---
+import SiteChrome from "../components/SiteChrome.astro";
+import "../styles/tokens.css";
+import "../styles/chrome.css";
+
+interface Props {
+  title?: string;
+  active?: "work" | "profile" | "contact" | "";
+  pageTitle?: string;
+  pageTitleHref?: string;
+  lockY?: boolean;
+  bodyClass?: string;
+  homeShell?: boolean;
+}
+const {
+  title = "Asad Khan",
+  active = "",
+  pageTitle = "",
+  pageTitleHref = "#",
+  lockY = false,
+  bodyClass = "",
+  homeShell = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/images/favicon.ico" />
+    <title>{title}</title>
+    <link rel="stylesheet" href="https://use.typekit.net/plt3mja.css" />
+    <script is:inline>
+      try {
+        if (localStorage.getItem("akhan-bg") === "warm") {
+          document.documentElement.setAttribute("data-bg", "warm");
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body class={bodyClass}>
+    <div id="preloader"></div>
+    <SiteChrome active={active} pageTitle={pageTitle} pageTitleHref={pageTitleHref} />
+    <main class:list={["page-shell", { "lock-y": lockY, "home-shell": homeShell }]}>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <button
+        type="button"
+        class="bg-toggle"
+        aria-label="Toggle background color"
+        aria-pressed="false"
+        title="Background"></button>
+      <p>© Asad Khan</p>
+    </footer>
+    <script>
+      import { initPreloader } from "../scripts/preloader.js";
+      import { initScrollLock } from "../scripts/scroll-lock.js";
+      import { initMobileNav } from "../scripts/mobile-nav.js";
+      import { initBgToggle } from "../scripts/bg-toggle.js";
+      initPreloader();
+      initScrollLock();
+      initMobileNav();
+      initBgToggle();
+    </script>
+  </body>
+</html>

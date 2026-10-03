@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Slideshow from "../components/Slideshow.astro";
+import Typewriter from "../components/Typewriter.astro";
+
+const slides = [
+  "/images/penguin pool 1.png",
+  "/images/penguin pool 2.png",
+  "/images/penguin pool 3.png",
+  "/images/penguin pool 4.png",
+  "/images/penguin pool 5.png",
+  "/images/penguin pool 6.png",
+  "/images/penguin pool 7.png",
+];
+---
+
+<BaseLayout
+  title="Penguin Pool"
+  active="work"
+  pageTitle="Penguin Pool"
+  pageTitleHref="/penguin-pool"
+>
+  <article class="project">
+    <img class="hero" src="/images/penguin pool 10-crop-u2762.png" alt="" />
+    <div class="section-head">
+      <Typewriter text="PROCESS" selectorId="Typing" />
+    </div>
+    <Slideshow images={slides} id="penguin-slides" />
+    <img class="hero hero--square" src="/images/penguin pool 11.png" alt="" />
+  </article>
+</BaseLayout>
+
+<style>
+  .project {
+    max-width: 963px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .hero {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero--square {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .section-head {
+    text-align: center;
+  }
+
+  .section-head :global(.typewriter) {
+    font-size: 25px;
+    line-height: 31px;
+  }
+</style>
+
+<script>
+  import { initTypewriter } from "../scripts/typewriter.js";
+  import { initSlideshow } from "../scripts/slideshow.js";
+  initTypewriter("#Typing", ["PROCESS"], 150);
+  initSlideshow("#penguin-slides");
+</script>

@@ -1,0 +1,152 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RolloverTile from "../components/RolloverTile.astro";
+
+/* Muse: *-layer* (or similar) is idle; plain artwork is hover */
+const works = [
+  {
+    href: "/assets/the-sea-is-alive--the-sea-is-dead..jpg",
+    label: "The Sea is Alive / The Sea is Dead",
+    image: "/images/the sea is alive- the sea is dead-layer 0.png",
+    hoverImage: "/images/the sea is alive- the sea is dead.png",
+  },
+  {
+    href: "/assets/monkey-business.jpg",
+    label: "Monkey Business",
+    image: "/images/monkey business-layer 1.png",
+    hoverImage: "/images/monkey business.png",
+  },
+  {
+    href: "/assets/it-s-ruff-out-there.jpg",
+    label: "It's Ruff Out There",
+    image: "/images/it-s ruff out there-layer 1.png",
+    hoverImage: "/images/it-s ruff out there.png",
+  },
+  {
+    href: "/assets/mermape.jpg",
+    label: "Mermape",
+    image: "/images/mermape-layer 1.png",
+    hoverImage: "/images/mermape.png",
+  },
+  {
+    href: "/assets/case-study-of-homo-sapiens-ssp..jpg",
+    label: "Case Study of Homo Sapiens ssp.",
+    image: "/images/case study of homo sapiens ssp-layer 1.png",
+    hoverImage: "/images/case study of homo sapiens ssp.png",
+  },
+  {
+    href: "/assets/the-missing-link.jpg",
+    label: "The Missing Link",
+    image: "/images/the missing link-layer 1.png",
+    hoverImage: "/images/the missing link.png",
+  },
+  {
+    href: "/assets/beast-of-burden.jpg",
+    label: "Beast of Burden",
+    image: "/images/beast of burden-layer 1.png",
+    hoverImage: "/images/beast of burden.png",
+  },
+  {
+    href: "/assets/the-beggar.jpg",
+    label: "The Beggar",
+    image: "/images/the beggar-layer 1.png",
+    hoverImage: "/images/the beggar.png",
+  },
+  {
+    href: "/assets/mango.jpg",
+    label: "Mango",
+    image: "/images/mango1-layer 1.png",
+    hoverImage: "/images/mango1.png",
+  },
+  {
+    href: "/assets/flanges---fumes.jpg",
+    label: "Flanges / Fumes",
+    image: "/images/flanges - fumes-layer 2.png",
+    hoverImage: "/images/flanges - fumes.png",
+  },
+  {
+    href: "/assets/pony.jpg",
+    label: "Pony",
+    image: "/images/pony-layer 0.png",
+    hoverImage: "/images/pony.png",
+  },
+  {
+    href: "/assets/these-colors-don-t-run.jpg",
+    label: "These Colors Don't Run",
+    image: "/images/these colors don-t run-layer 1.png",
+    hoverImage: "/images/these colors don-t run.png",
+  },
+  {
+    href: "/assets/ritual-of-refinement.jpg",
+    label: "Ritual of Refinement",
+    image: "/images/ritual of refinement-layer 1.png",
+    hoverImage: "/images/ritual of refinement.png",
+  },
+  {
+    href: "/assets/primal-desire.jpg",
+    label: "Primal Desire",
+    image: "/images/primal desire-layer 1.png",
+    hoverImage: "/images/primal desire.png",
+  },
+  {
+    href: "/assets/genesis-1-27.jpg",
+    label: "Genesis 1:27",
+    image: "/images/genesis 1 27-layer 1.png",
+    hoverImage: "/images/genesis 1 27.png",
+  },
+  {
+    href: "/assets/creationism-and-communism.jpg",
+    label: "Creationism and Communism",
+    image: "/images/creationism and communism-layer 1.png",
+    hoverImage: "/images/creationism and communism.png",
+  },
+  {
+    href: "/assets/the-great-ape.jpg",
+    label: "The Great Ape",
+    image: "/images/the great ape-layer 0.png",
+    hoverImage: "/images/the great ape.png",
+  },
+];
+---
+
+<BaseLayout
+  title="Conceptual"
+  active="work"
+  pageTitle="conceptual"
+  pageTitleHref="/conceptual"
+>
+  <div class="concept-top">
+    <a class="Link" href="/assets/artist-statement.pdf" target="_blank" rel="noopener">
+      Artist Statement
+    </a>
+  </div>
+  <div class="concept-stack">
+    {
+      works.map((w) => (
+        <RolloverTile
+          href={w.href}
+          label={w.label}
+          image={w.image}
+          hoverImage={w.hoverImage}
+          external={true}
+          fit={true}
+        />
+      ))
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .concept-top {
+    text-align: center;
+    margin: 8px 0 28px;
+  }
+
+  .concept-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: min(98%, 1000px);
+    margin: 0 auto;
+  }
+</style>

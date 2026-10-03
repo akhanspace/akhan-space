@@ -1,0 +1,192 @@
+:root {
+  --pink: #ffbbcc;
+  --cream: #ffeebb;
+  --cyan: #aaeeee;
+  --gray: #7f7f7f;
+  --black: #000000;
+  --bg: #000000;
+  --error: #d7244c;
+  --font-display: industry, sans-serif;
+  --weight-display: 500;
+  --track-scale: 1;
+  --font-mono: t26-carbon, "t-26 carbon", monospace;
+  --page-max: 1200px;
+  --header-top: 25px;
+  --rule-top: 67px;
+}
+
+html[data-bg="warm"] {
+  --bg: #f8e2c4;
+  --black: #f8e2c4;
+  --pink: #371912;
+  --gray: #371912;
+  --cream: #d3a879;
+  --cyan: #d8b7b2;
+  --font-display: "Decimal Light", "decimal-light", sans-serif;
+  --weight-display: 400;
+  --track-scale: 0.8;
+  --font-mono: "armag-fury", "Armag Fury", serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--gray);
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+  word-wrap: break-word;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.link {
+  color: var(--cyan);
+  text-decoration: underline;
+}
+
+a.link:hover {
+  color: var(--cream);
+}
+
+::selection {
+  background-color: var(--pink);
+  color: var(--cream);
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--pink);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 3px;
+}
+
+/* Banana cursors
+   - Hotspot 16,16 (cursor is 32×32): default (0,0) hotspot exits the
+     hit-target as you move toward an element's center, so peeled flickered off.
+   - Do not set cursor on bare `span` (Muse did); spans inside links stole
+     the peeled cursor. Force peeled on interactive elements and descendants. */
+html,
+body {
+  cursor: url("/assets/banana.png") 16 16, auto !important;
+}
+
+a,
+a *,
+button,
+button *,
+.menu-toggle,
+.menu-toggle *,
+.Link,
+.Link *,
+summary,
+[role="button"],
+[role="link"] {
+  cursor: url("/assets/bananapeeled.png") 16 16, pointer !important;
+}
+
+.dragme {
+  cursor: url("/assets/grab.png") 16 16, move !important;
+}
+
+.dragme:active {
+  cursor: url("/assets/grabbing.png") 16 16, grabbing !important;
+}
+
+canvas:hover,
+.mapboxgl-canvas:hover,
+.mapboxgl-canvas-container:hover {
+  cursor: url("/assets/grab.png") 16 16, grab !important;
+}
+
+canvas:active,
+.mapboxgl-canvas:active,
+.mapboxgl-canvas-container:active {
+  cursor: url("/assets/grabbing.png") 16 16, grabbing !important;
+}
+
+textarea,
+input,
+textarea:hover,
+input:hover,
+textarea *,
+input * {
+  cursor: url("/assets/typing.png") 16 16, text !important;
+}
+
+.Header {
+  color: var(--pink);
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: var(--weight-display);
+  letter-spacing: calc(20px * var(--track-scale));
+  line-height: 40px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.Nav {
+  color: var(--pink);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: var(--weight-display);
+  letter-spacing: calc(5px * var(--track-scale));
+  line-height: 25px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.Body {
+  color: var(--gray);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: justify;
+}
+
+.Top-Right-Page-Header {
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: var(--weight-display);
+  letter-spacing: calc(20px * var(--track-scale));
+  line-height: 30px;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.Link {
+  color: var(--cyan);
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: var(--weight-display);
+  letter-spacing: calc(12px * var(--track-scale));
+  line-height: 29px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.Link:hover {
+  color: var(--cream);
+}

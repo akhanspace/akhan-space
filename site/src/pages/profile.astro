@@ -1,0 +1,392 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Profile"
+  active="profile"
+  pageTitle="profile"
+  pageTitleHref="/profile"
+  bodyClass="profile-page"
+  homeShell={true}
+>
+  <div class="profile-gutters" aria-hidden="true">
+    <div class="profile-gutter profile-gutter--l"></div>
+    <div class="profile-gutter profile-gutter--r"></div>
+  </div>
+
+  {/* Muse #pu28460: map strip + black veil + centered bio overlay */}
+  <div class="profile-stage">
+    <div class="profile-map" id="u28463">
+      <div id="map"></div>
+    </div>
+    <div class="profile-veil" aria-hidden="true"></div>
+
+    <div class="profile-copy">
+      <p class="quote">
+        " I used to make zoos with plastic animals<br />and charge my family to see them. "
+      </p>
+      <p class="bio">
+        <span
+          >Asad Khan is a designer that focuses on bridging the gap between humans and other animals.
+          His work generally takes the form of conceptual zoo exhibit designs, but he occasionally
+          works as a fine artist as well. No matter the media, his work consistently seeks to
+          challenge power roles and to allow space for contemplation on the role of the human animal
+          in the Anthropocene.</span
+        >
+      </p>
+      <p class="bio">
+        <span
+          >Asad is from Houston and attends the Parsons New School of Design in New York City as an
+          undergraduate. He is working towards a dual degree: a BFA in Integrated Design with an
+          emphasis on Zoo Design and a BA in Liberal Arts with an emphasis on Anthropogeny. He plans
+          to earn a Master of Architecture and a Master of Landscape Architecture in the future..</span
+        >
+      </p>
+      <p class="bio">
+        <span
+          >Zoo Design has been Asad's passion since a very young age, as it has always presented a
+          unique blend of his steady interests in biology, design, and business. He seeks to break
+          away from the paradigms present in the field and to present new experiences that draw from
+          other disciplines.</span
+        >
+      </p>
+      <p class="spacer spacer--bio">&nbsp;</p>
+      <p class="ext-link">
+        <a href="/assets/design-resume.pdf" target="_blank" rel="noopener"><span>Résumé</span></a>
+      </p>
+      <p class="ext-link">
+        <a href="https://www.pinterest.com/khanimalia/" target="_blank" rel="noopener"
+          ><span>Pinterest</span></a
+        >
+      </p>
+      <p class="spacer spacer--links">&nbsp;</p>
+      <p class="writings-label">WRITINGS:</p>
+      <p class="writing-link">
+        <a href="/assets/the-greatest-ape.pdf" target="_blank" rel="noopener">The Greatest Ape</a>
+      </p>
+      <p class="writing-link">
+        <a href="/assets/japanese-landscape-architecture.pdf" target="_blank" rel="noopener"
+          >Japanese Landscape Architecture</a
+        >
+      </p>
+      <p class="spacer spacer--end">&nbsp;</p>
+      <p class="spacer spacer--end2">&nbsp;</p>
+      <p class="spacer spacer--end3">&nbsp;</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css" rel="stylesheet" />
+<script is:inline src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js"></script>
+<script is:inline>
+  mapboxgl.accessToken =
+    "pk.eyJ1IjoiYWtoYW5zcGFjZSIsImEiOiJjamJlcDkyNzAweHJ1Mnlxd2lrbjJ5a3EyIn0.3Qa090Nqxb0zvbdDf56Vtg";
+  const map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/akhanspace/cjbeq0r0x9aar2rojqfs555wn",
+    center: [-95, 29],
+    zoom: 5,
+    renderWorldCopies: true,
+    scrollZoom: true,
+  });
+  map.on("load", function () {
+    map.resize();
+  });
+  window.addEventListener("resize", function () {
+    map.resize();
+  });
+</script>
+
+<style>
+  /*
+    Muse desktop (≥1151): map 1600×205 at viewport ~70px,
+    black veil + bio at +158px, bio width 60.25% of 1600 (=964px) centered.
+  */
+  :global(body.profile-page) {
+    overflow-x: hidden;
+  }
+
+  :global(body.profile-page .page-shell.home-shell) {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .profile-gutter {
+    position: fixed;
+    top: 0;
+    z-index: 7;
+    width: 80px;
+    height: 341px;
+    background: var(--bg);
+    pointer-events: none;
+  }
+
+  .profile-gutter--l {
+    left: 0;
+  }
+
+  .profile-gutter--r {
+    right: 0;
+    z-index: 6;
+  }
+
+  .profile-stage {
+    position: relative;
+    width: 100%;
+    /* Muse map top ≈ 70px; use padding so it can’t margin-collapse */
+    padding-top: 70px;
+    min-height: 900px;
+    padding-bottom: 48px;
+  }
+
+  /* Muse #u28463 */
+  .profile-map {
+    position: relative;
+    z-index: 5;
+    width: 1600px;
+    height: 205px;
+    margin-left: 50%;
+    left: -800px;
+    overflow: hidden;
+  }
+
+  #map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Muse #u28466 black band — viewport top 228 (= stage 70 + 158) */
+  .profile-veil {
+    position: absolute;
+    top: 228px;
+    z-index: 8;
+    width: 1600px;
+    height: 206px;
+    margin-left: 50%;
+    left: -800px;
+    background: var(--bg);
+    pointer-events: none;
+  }
+
+  /* Muse #u29298-31 */
+  .profile-copy {
+    position: absolute;
+    top: 228px;
+    z-index: 9;
+    width: 964px; /* 60.25% of 1600 */
+    max-width: calc(100% - 120px);
+    left: 50%;
+    margin-left: -482px;
+  }
+
+  .quote {
+    margin: 0;
+    padding: 50px 0 30px;
+    color: var(--cream);
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 29px;
+    text-align: center;
+  }
+
+  /* Muse para shell: indent + tiny lh; span carries readable 18/22 */
+  .bio {
+    margin: 0;
+    padding-top: 10px;
+    color: var(--gray);
+    font-family: var(--font-mono);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 0;
+    text-align: justify;
+    text-indent: 60px;
+  }
+
+  .bio span {
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .spacer {
+    margin: 0;
+  }
+
+  .spacer--bio {
+    padding-top: 10px;
+    color: var(--gray);
+    font-family: var(--font-mono);
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: calc(12px * var(--track-scale));
+    line-height: 36px;
+    text-align: left;
+    text-indent: 60px;
+  }
+
+  .ext-link {
+    margin: 0;
+    padding-top: 10px;
+    color: var(--cyan);
+    font-family: var(--font-display);
+    font-size: 23px;
+    font-weight: var(--weight-display);
+    letter-spacing: calc(12px * var(--track-scale));
+    line-height: 0;
+    text-align: left;
+  }
+
+  .ext-link a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .ext-link a:hover,
+  .ext-link a:hover span {
+    color: var(--cream);
+  }
+
+  .ext-link span {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 22px;
+  }
+
+  .spacer--links {
+    padding-top: 10px;
+    color: var(--cyan);
+    font-family: var(--font-display);
+    font-size: 23px;
+    font-weight: var(--weight-display);
+    letter-spacing: calc(12px * var(--track-scale));
+    line-height: 28px;
+  }
+
+  .writings-label {
+    margin: 0;
+    padding-top: 10px;
+    color: var(--pink);
+    font-family: var(--font-display);
+    font-size: 23px;
+    font-weight: var(--weight-display);
+    letter-spacing: calc(12px * var(--track-scale));
+    line-height: 28px;
+    text-align: left;
+    text-transform: none;
+  }
+
+  .writing-link {
+    margin: 0;
+    padding-top: 10px;
+    color: var(--pink);
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  /* Muse a:link wins over pink paragraph color → cyan underline */
+  .writing-link a {
+    color: var(--cyan);
+    text-decoration: underline;
+  }
+
+  .writing-link a:hover {
+    color: var(--cream);
+  }
+
+  .spacer--end {
+    padding-top: 10px;
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-size: 23px;
+    font-weight: var(--weight-display);
+    letter-spacing: calc(12px * var(--track-scale));
+    line-height: 28px;
+    text-align: center;
+  }
+
+  .spacer--end2 {
+    padding-top: 10px;
+    color: var(--gray);
+    font-family: var(--font-mono);
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: calc(12px * var(--track-scale));
+    line-height: 36px;
+    text-align: left;
+    text-indent: 60px;
+  }
+
+  .spacer--end3 {
+    padding-top: 10px;
+    color: var(--pink);
+    font-family: var(--font-mono);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 36px;
+    text-align: left;
+    text-indent: 60px;
+  }
+
+  @media (max-width: 1150px) {
+    .profile-map,
+    .profile-veil {
+      width: 100%;
+      left: 0;
+      margin-left: 0;
+    }
+
+    .profile-copy {
+      width: min(964px, calc(100% - 48px));
+      left: 50%;
+      margin-left: 0;
+      transform: translateX(-50%);
+    }
+
+    .profile-gutter {
+      display: none;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .profile-stage {
+      padding-top: 90px;
+    }
+
+    .profile-map {
+      height: 180px;
+    }
+
+    .profile-veil {
+      top: 230px;
+      height: 180px;
+    }
+
+    .profile-copy {
+      top: 230px;
+    }
+
+    .quote {
+      padding: 32px 0 20px;
+      font-size: 20px;
+      line-height: 26px;
+    }
+
+    .bio {
+      text-indent: 24px;
+    }
+  }
+</style>

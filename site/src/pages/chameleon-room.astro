@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Chameleon Room"
+  active="work"
+  pageTitle="Chameleon Room"
+  pageTitleHref="/chameleon-room"
+>
+  <article class="project">
+    <video
+      class="hero-video"
+      width="963"
+      height="1058"
+      poster="/assets/chameleon-gallery0003.png"
+      muted
+      loop
+      autoplay
+      playsinline
+    >
+      <source src="/assets/chameleon.mp4" type="video/mp4" />
+      <source src="/assets/chameleon.webm" type="video/webm" />
+    </video>
+    <img class="hero" src="/images/0 turrell white-lit.png" alt="" />
+    <img class="hero" src="/images/turrell top view.png" alt="" />
+    <img class="hero" src="/images/turrell isometric.png" alt="" />
+  </article>
+</BaseLayout>
+
+<style>
+  .project {
+    max-width: 963px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .hero,
+  .hero-video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

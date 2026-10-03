@@ -1,0 +1,116 @@
+---
+interface Props {
+  href: string;
+  /** Idle / default state image */
+  image: string;
+  /** Hover / rollover state image */
+  hoverImage: string;
+  label: string;
+  external?: boolean;
+  /** Muse fluid height spacer padding-bottom % — used when fit is false */
+  aspectPad?: number;
+  /**
+   * Size the tile to the natural aspect ratio of `image`
+   * (consistent vertical gaps between works).
+   */
+  fit?: boolean;
+}
+const {
+  href,
+  image,
+  hoverImage,
+  label,
+  external = false,
+  aspectPad = 100,
+  fit = false,
+} = Astro.props;
+---
+
+<a
+  class:list={["rollover-tile", { "rollover-tile--fit": fit }]}
+  href={href}
+  aria-label={label}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+  style={
+    fit
+      ? undefined
+      : `--tile: url('${image}'); --tile-hover: url('${hoverImage}'); --aspect-pad: ${aspectPad}%;`
+  }
+>
+  {
+    fit ? (
+      <>
+        <img class="rollover-tile__img" src={image} alt="" />
+        <img class="rollover-tile__hover" src={hoverImage} alt="" />
+      </>
+    ) : (
+      <>
+        <span class="rollover-tile__spacer" aria-hidden="true" />
+        <span class="visually-hidden">{label}</span>
+      </>
+    )
+  }
+  {fit && <span class="visually-hidden">{label}</span>}
+</a>
+
+<style>
+  .rollover-tile {
+    position: relative;
+    display: block;
+    width: 100%;
+    background-image: var(--tile);
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    transition: background-image 0.5s linear;
+  }
+
+  .rollover-tile:not(.rollover-tile--fit):hover {
+    background-image: var(--tile-hover);
+  }
+
+  .rollover-tile__spacer {
+    display: block;
+    width: 100%;
+    padding-bottom: var(--aspect-pad);
+  }
+
+  .rollover-tile--fit {
+    background: none;
+    line-height: 0;
+    overflow: hidden;
+  }
+
+  .rollover-tile__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .rollover-tile__hover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+  }
+
+  .rollover-tile--fit:hover .rollover-tile__hover {
+    opacity: 1;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>

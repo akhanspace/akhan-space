@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="House Spiralia"
+  active="work"
+  pageTitle="House Spiralia"
+  pageTitleHref="/house-spiralia"
+>
+  <article class="project">
+    <video class="hero-video" width="963" height="566" muted loop autoplay playsinline>
+      <source src="/assets/house-spiralia-final.mp4" type="video/mp4" />
+      <source src="/assets/house-spiralia-final.webm" type="video/webm" />
+    </video>
+  </article>
+</BaseLayout>
+
+<style>
+  .project {
+    max-width: 963px;
+    margin: 0 auto;
+  }
+
+  .hero-video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

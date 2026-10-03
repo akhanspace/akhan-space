@@ -1,0 +1,134 @@
+---
+interface Props {
+  text: string;
+  selectorId?: string;
+  glitch?: boolean;
+}
+const { text, selectorId = "Typing", glitch = false } = Astro.props;
+---
+
+<h1 id={selectorId} class:list={["typewriter", { "typewriter--glitch": glitch }]}>{text}</h1>
+
+<style>
+  .typewriter {
+    margin: 0;
+    color: var(--gray);
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    text-transform: none;
+  }
+
+  .typewriter--glitch {
+    animation: glitch 2s steps(100) infinite;
+  }
+
+  :global(.typing-caret) {
+    border-right: 0.1em solid var(--gray);
+    animation: caret 1s steps(1) infinite;
+  }
+
+  @keyframes caret {
+    0% {
+      border-color: transparent;
+    }
+  }
+
+  @keyframes glitch {
+    0%,
+    4% {
+      text-shadow: 1px 0 0 #4f0031, -1px 0 0 #004256;
+    }
+    5%,
+    10% {
+      text-shadow: -1px 0 0 #4f0031, 1px 0 0 #004256;
+    }
+    11%,
+    15% {
+      text-shadow: 0.5px 0 0 #4f0031, -0.5px 0 0 #595900;
+    }
+    16%,
+    20% {
+      text-shadow: -1px 0 0 #4f0031, 1px 0 0 #595900;
+    }
+    21%,
+    30% {
+      text-shadow: 0.7px 0 0 #004256, -0.7px 0 0 #595900;
+    }
+    31%,
+    40% {
+      text-shadow: -1px 0 0 #004256, 1px 0 0 #595900;
+    }
+    41% {
+      text-shadow: 50px 0 0 #004256, -50px 0 0 #595900;
+    }
+    42% {
+      text-shadow: 0 0 0 #004256, 0 0 0 #595900;
+    }
+    43%,
+    46% {
+      text-shadow: 0.5px 0 0 #4f0031, -0.5px 0 0 #595900;
+    }
+    47%,
+    50% {
+      text-shadow: -1px 0 0 #4f0031, 1px 0 0 #595900;
+    }
+    51%,
+    55% {
+      text-shadow: 1px 0 0 #4f0031, -1px 0 0 #004256;
+    }
+    56%,
+    60% {
+      text-shadow: -1px 0 0 #4f0031, 1px 0 0 #004256;
+    }
+    61% {
+      text-shadow: 30px 0 0 #4f0031, -30px 0 0 #595900;
+    }
+    62% {
+      text-shadow: 0 0 0 #4f0031, 0 0 0 #595900;
+    }
+    63%,
+    66% {
+      text-shadow: 0.5px 0 0 #4f0031, -0.5px 0 0 #004256;
+    }
+    67%,
+    70% {
+      text-shadow: -1px 0 0 #4f0031, 1px 0 0 #004256;
+    }
+    71% {
+      text-shadow: 70px 0 0 #4f0031, -70px 0 0 #004256;
+    }
+    72% {
+      text-shadow: 0 0 0 #4f0031, 0 0 0 #004256;
+    }
+    73%,
+    76% {
+      text-shadow: 1px 0 0 #4f0031, -1px 0 0 #004256;
+    }
+    77%,
+    80% {
+      text-shadow: -1px 0 0 #4f0031, 1px 0 0 #004256;
+    }
+    81%,
+    85% {
+      text-shadow: 0.5px 0 0 #4f0031, -0.5px 0 0 #595900;
+    }
+    86%,
+    90% {
+      text-shadow: -1px 0 0 #4f0031, 1px 0 0 #595900;
+    }
+    91% {
+      text-shadow: 60px 0 0 #595900, -60px 0 0 #004256;
+    }
+    92%,
+    95% {
+      text-shadow: 0.7px 0 0 #004256, -0.7px 0 0 #595900;
+    }
+    96%,
+    100% {
+      text-shadow: -1px 0 0 #004256, 1px 0 0 #595900;
+    }
+  }
+</style>

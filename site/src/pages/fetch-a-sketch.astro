@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Slideshow from "../components/Slideshow.astro";
+import Typewriter from "../components/Typewriter.astro";
+
+const designSlides = [
+  "/images/fetch a sketch 1.png",
+  "/images/fetch a sketch 2.png",
+  "/images/fetch a sketch 3.png",
+  "/images/fetch a sketch 4.png",
+];
+---
+
+<BaseLayout
+  title="Fetch a Sketch"
+  active="work"
+  pageTitle="Fetch a sketch"
+  pageTitleHref="/fetch-a-sketch"
+>
+  <article class="project">
+    <div class="section-head">
+      <Typewriter text="THE DESIGN" selectorId="Typing" />
+    </div>
+    <Slideshow images={designSlides} id="fetch-slides" />
+    <div class="section-head">
+      <Typewriter text="THE PROCESS" selectorId="Typing2" />
+    </div>
+    <Slideshow images={designSlides} id="fetch-slides-2" />
+  </article>
+</BaseLayout>
+
+<style>
+  .project {
+    max-width: 963px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .section-head {
+    text-align: center;
+  }
+
+  .section-head :global(.typewriter) {
+    font-size: 25px;
+    line-height: 31px;
+  }
+</style>
+
+<script>
+  import { initTypewriter } from "../scripts/typewriter.js";
+  import { initSlideshow } from "../scripts/slideshow.js";
+  initTypewriter("#Typing", ["THE DESIGN"], 150);
+  initTypewriter("#Typing2", ["THE PROCESS"], 150);
+  initSlideshow("#fetch-slides");
+  initSlideshow("#fetch-slides-2");
+</script>

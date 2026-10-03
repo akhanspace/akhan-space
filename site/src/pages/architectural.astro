@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RolloverTile from "../components/RolloverTile.astro";
+
+/* Muse: layer art is idle; plain icon is hover */
+const projects = [
+  {
+    href: "/house-spiralia",
+    label: "House Spiralia",
+    image: "/images/website house spiralia icon-layer 3.png",
+    hoverImage: "/images/website house spiralia icon.png",
+  },
+  {
+    href: "/fetch-a-sketch",
+    label: "Fetch a Sketch",
+    image: "/images/website fetch a sketch icon-layer 0.png",
+    hoverImage: "/images/website fetch a sketch icon.png",
+  },
+  {
+    href: "/chameleon-room",
+    label: "Chameleon Room",
+    image: "/images/website the chamspace icon-layer 0.png",
+    hoverImage: "/images/website the chamspace icon.png",
+  },
+  {
+    href: "/otter-space",
+    label: "Otter Space",
+    image: "/images/website otter space icon-layer 0.png",
+    hoverImage: "/images/website otter space icon.png",
+  },
+  {
+    href: "/urban-jungle",
+    label: "Urban Jungle",
+    image: "/images/website urban jungle icon-layer 4.png",
+    hoverImage: "/images/website urban jungle icon.png",
+  },
+  {
+    href: "/penguin-pool",
+    label: "Penguin Pool",
+    image: "/images/website penguin pool icon-layer 2.png",
+    hoverImage: "/images/website penguin pool icon.png",
+  },
+];
+---
+
+<BaseLayout
+  title="Architectural"
+  active="work"
+  pageTitle="architectural"
+  pageTitleHref="/architectural"
+>
+  <div class="arch-grid">
+    {
+      projects.map((p) => (
+        <RolloverTile
+          href={p.href}
+          label={p.label}
+          image={p.image}
+          hoverImage={p.hoverImage}
+          aspectPad={100}
+        />
+      ))
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .arch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 5%;
+    width: 80%;
+    max-width: 960px;
+    margin: 40px auto 0;
+  }
+
+  @media (max-width: 900px) {
+    .arch-grid {
+      grid-template-columns: repeat(2, 1fr);
+      width: 92%;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .arch-grid {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+  }
+</style>

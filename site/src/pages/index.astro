@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Typewriter from "../components/Typewriter.astro";
+---
+
+<BaseLayout title="Home" lockY={true} homeShell={true} bodyClass="home-page">
+  <video id="bgvid" preload="auto" autoplay loop muted playsinline>
+    <source src="/assets/img_0109_3.webm" type="video/webm" />
+    <source src="/assets/img_0109_3.mp4" type="video/mp4" />
+  </video>
+  <div class="welcome">
+    <Typewriter text="Welcome" selectorId="Typing" glitch={true} />
+  </div>
+</BaseLayout>
+
+<style>
+  :global(body.home-page) {
+    overflow-y: hidden;
+  }
+
+  #bgvid {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translate(-50%, -50%);
+    background: var(--bg);
+  }
+
+  /* Muse #u27171: top 350, width 229, font 20px */
+  .welcome {
+    position: fixed;
+    left: 50%;
+    top: 350px;
+    margin-left: -113px;
+    width: 229px;
+    z-index: 5;
+    transform: none;
+  }
+
+  .welcome :global(.typewriter) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  @media (max-width: 500px) {
+    .welcome {
+      top: 40vh;
+      margin-left: -113px;
+    }
+  }
+</style>
+
+<script>
+  import { initTypewriter } from "../scripts/typewriter.js";
+  initTypewriter("#Typing", ["Welcome."], 200);
+</script>

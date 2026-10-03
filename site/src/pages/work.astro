@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RolloverTile from "../components/RolloverTile.astro";
+---
+
+<BaseLayout title="Work" active="work" pageTitle="Work" pageTitleHref="/work">
+  {/* Muse idle → hover pairing from work.css */}
+  <div class="hub-stack">
+    <RolloverTile
+      href="/architectural"
+      label="Architectural"
+      image="/images/website architectural photoshop button.png"
+      hoverImage="/images/website architectural photoshop button-architectural copy 2.png"
+      aspectPad={50.05}
+    />
+    <RolloverTile
+      href="/conceptual"
+      label="Conceptual"
+      image="/images/website conceptual photoshop button-layer 5 copy.png"
+      hoverImage="/images/website conceptual photoshop button-conceptual copy.png"
+      aspectPad={50.05}
+    />
+  </div>
+</BaseLayout>
+
+<style>
+  .hub-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: min(95%, 1145px);
+    margin: 24px auto 0;
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+
+  @media (max-width: 700px) {
+    .hub-stack {
+      gap: 16px;
+      padding-left: 0;
+      padding-right: 0;
+      width: 100%;
+    }
+  }
+</style>
