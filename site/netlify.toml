@@ -1,75 +1,7 @@
-[[redirects]]
-  from = "/index.html"
-  to = "/"
-  status = 301
-
-[[redirects]]
-  from = "/work.html"
-  to = "/work"
-  status = 301
-
-[[redirects]]
-  from = "/conceptual.html"
-  to = "/conceptual"
-  status = 301
-
-[[redirects]]
-  from = "/architectural.html"
-  to = "/architectural"
-  status = 301
-
-[[redirects]]
-  from = "/profile.html"
-  to = "/profile"
-  status = 301
-
-[[redirects]]
-  from = "/contact.html"
-  to = "/contact"
-  status = 301
-
-[[redirects]]
-  from = "/listening-device.html"
-  to = "/listening-device"
-  status = 301
-
-[[redirects]]
-  from = "/urban-jungle.html"
-  to = "/urban-jungle"
-  status = 301
-
-[[redirects]]
-  from = "/penguin-pool.html"
-  to = "/penguin-pool"
-  status = 301
-
-[[redirects]]
-  from = "/otter-space.html"
-  to = "/otter-space"
-  status = 301
-
-[[redirects]]
-  from = "/fetch-a-sketch.html"
-  to = "/fetch-a-sketch"
-  status = 301
-
-[[redirects]]
-  from = "/chameleon-room.html"
-  to = "/chameleon-room"
-  status = 301
-
-[[redirects]]
-  from = "/house-spiralia.html"
-  to = "/house-spiralia"
-  status = 301
-
-[[redirects]]
-  from = "/404.html"
-  to = "/404"
-  status = 301
+# Kept for local `netlify dev` from site/.
+# Production reads the repo-root netlify.toml (base = "site").
 
 [build]
-  # Copy media from repo root (junctions are local-only / gitignored)
   command = "cp -r ../assets ./public/assets && cp -r ../images ./public/images && npm run build"
   publish = "dist"
   functions = "netlify/functions"

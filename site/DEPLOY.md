@@ -15,4 +15,6 @@ Set site environment variables in Netlify UI:
 - `CONTACT_TO=asad@akhan.space`
 - `CONTACT_FROM` — a verified Resend sender (e.g. `Akhan Space <onboarding@resend.dev>` until your domain is verified)
 
-`netlify.toml` already points build to `npm run build`, publish to `dist`, and functions to `netlify/functions`. HTML path redirects (`/work.html` → `/work`) are included.
+Root `netlify.toml` sets `base = "site"`, builds with `npm run build`, publishes `dist`, and wires `netlify/functions`. HTML path redirects (`/work.html` → `/work`) are included.
+
+In the Netlify UI, leave **Base directory** empty (the toml handles it). If you previously set Base directory to `site`, clear it or keep it — either way should work after the root toml is present.
