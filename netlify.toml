@@ -1,9 +1,6 @@
-# Repo-root config so Netlify works without manual "Base directory" tweaks.
-# Build runs inside site/; media is copied from ../assets and ../images.
-
 [build]
   base = "site"
-  command = "cp -r ../assets ./public/assets && cp -r ../images ./public/images && npm run build"
+  command = "mkdir -p public/assets public/images && cp -R ../assets/. ./public/assets/ && cp -R ../images/. ./public/images/ && npm ci && npm run build"
   publish = "dist"
   functions = "netlify/functions"
 
